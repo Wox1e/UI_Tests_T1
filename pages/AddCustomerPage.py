@@ -63,14 +63,14 @@ class AddCustomerPage(BasePage):
         element = self.find_element(locator)
         self.fill_element(element, self.post_code)
 
-    def fill_first_name(self) -> None:
+    def fill_fname_by_post_code(self) -> None:
         """Заполняет поле FirstName."""
         locator = (By.CSS_SELECTOR, AddCustomerPageLocators.INPUT_FirstName_CSS)
         element = self.find_element(locator)
         first_name = self._generate_first_name(self.post_code)
         self.fill_element(element, first_name)
 
-    def fill_last_name(self) -> None:
+    def fill_lname_by_post_code(self) -> None:
         """Заполняет поле LastName."""
         last_name = self._generate_last_name()
         locator = (By.XPATH, AddCustomerPageLocators.INPUT_LastName_XPATH)

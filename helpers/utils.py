@@ -44,3 +44,4 @@ def find_closest_el_by_len(l: list, target_len: int) -> str:
             min_closure = current_closure
 
     return closest
+

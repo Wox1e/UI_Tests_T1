@@ -31,10 +31,11 @@ class TestCustomersPage:
 
     @allure.story("Удаление клиента с длинной First Name, ближайшей к среднему значению длин всех First Name")
     def test_remove_particular_customer(self):
+        before_remove = self.customers_page.get_fnames()
         self.customers_page.remove_customer_with_avg_fname_len()
-
-        ## Сделать проверку !!
-    
+        after_remove = self.customers_page.get_fnames()
+        assert len(before_remove) - 1 == len(after_remove)
+        
 
 
 @allure.feature('Тесты страницы Add Customer')
@@ -46,12 +47,12 @@ class TestAddCustomerPage:
         self.add_customer_page = AddCustomerPage(self.driver)
 
     @allure.story('Тестирование добавления нового клиента')
-    def test_add_customer_page(self):
+    def test_add_customer(self):
         with allure.step("Заполнение поля First Name"):
-            self.add_customer_page.fill_first_name()
+            self.add_customer_page.fill_fname_by_post_code()
 
         with allure.step("Заполнение поля Last Name"):
-            self.add_customer_page.fill_last_name()
+            self.add_customer_page.fill_lname_by_post_code()
 
         with allure.step("Заполнение поля Post Code"):
             self.add_customer_page.fill_post_code()
@@ -63,3 +64,5 @@ class TestAddCustomerPage:
             assert self.add_customer_page.is_alert_appeared(2)
         
 
+
+            
