@@ -17,11 +17,15 @@ class TestCustomersPage:
         after_sort = self.customers_page.get_fnames()
         
         with allure.step("Проверка отсортированности в обратном порядке"):
+            print(f"python sorted: {sorted(before_sort, reverse=True)}")
+            print(f"service sorted: {after_sort}")
             assert sorted(before_sort, reverse=True) == after_sort
 
         with allure.step("Проверка отсортированности в прямом порядке"):
             self.customers_page.sort_by_fname()
             after_sort = self.customers_page.get_fnames()
+            print(f"python sorted: {sorted(before_sort, reverse=False)}")
+            print(f"service sorted: {after_sort}")
             assert sorted(before_sort, reverse=False) == after_sort
 
     @allure.story("Удаление клиента с длинной First Name, ближайшей к среднему значению длин всех First Name")

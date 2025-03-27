@@ -37,7 +37,6 @@ class TestAddCustomerPage_correct:
             self.test_add_customer()
 
 
-
 @allure.feature('Тесты страницы Add Customer (не корректные)')
 class TestAddCustomerPage_incorrect:
 
