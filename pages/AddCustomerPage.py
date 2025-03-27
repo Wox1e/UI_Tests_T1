@@ -58,21 +58,38 @@ class AddCustomerPage(BasePage):
         self.click_on_element(element)
 
     def fill_post_code(self) -> None:
-        """Заполняет поле PostCode."""
+        """Заполняет поле PostCode сгенерированными данными"""
         locator = (By.XPATH, AddCustomerPageLocators.INPUT_PostCode_XPATH)
         element = self.find_element(locator)
         self.fill_element(element, self.post_code)
 
+    def fill_post_code_by_value(self, value:str) -> None:
+        """Заполняет поле PostCode, строкой, переданной в функцию"""
+        self.post_code = value
+        self.fill_post_code()
+
     def fill_fname_by_post_code(self) -> None:
-        """Заполняет поле FirstName."""
+        """Заполняет поле FirstName сгенерированными данными"""
         locator = (By.CSS_SELECTOR, AddCustomerPageLocators.INPUT_FirstName_CSS)
         element = self.find_element(locator)
         first_name = self._generate_first_name(self.post_code)
         self.fill_element(element, first_name)
 
     def fill_lname_by_post_code(self) -> None:
-        """Заполняет поле LastName."""
+        """Заполняет поле LastName сгенерированными данными"""
         last_name = self._generate_last_name()
         locator = (By.XPATH, AddCustomerPageLocators.INPUT_LastName_XPATH)
         element = self.find_element(locator)
         self.fill_element(element, last_name)
+
+    def fill_lname_by_value(self, value:str) -> None:
+        """Заполняет поле Last Name, строкой, переданной в функцию"""
+        locator = (By.XPATH, AddCustomerPageLocators.INPUT_LastName_XPATH)
+        element = self.find_element(locator)
+        self.fill_element(element, value)
+
+    def fill_fname_by_value(self, value:str) -> None:
+        """Заполняет поле First Name, строкой, переданной в функцию"""
+        locator = (By.CSS_SELECTOR, AddCustomerPageLocators.INPUT_FirstName_CSS)
+        element = self.find_element(locator)
+        self.fill_element(element, value)
