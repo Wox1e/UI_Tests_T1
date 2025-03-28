@@ -1,8 +1,9 @@
 """Модуль для работы классом CustomersPage и его локаторами"""
 
-from helpers.utils import average_str_len, find_closest_el_by_len
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
+
+from helpers.utils import average_str_len, find_closest_el_by_len
 from pages.BasePage import BasePage
 
 

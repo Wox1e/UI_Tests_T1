@@ -1,7 +1,8 @@
 """Модуль для работы с AddCustomerPage и её локаторами"""
 
-from helpers.utils import generate_str_digit, code_to_letter
 from selenium.webdriver.common.by import By
+
+from helpers.utils import generate_str_digit, code_to_letter
 from pages.BasePage import BasePage
 
 

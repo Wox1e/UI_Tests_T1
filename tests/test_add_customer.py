@@ -1,21 +1,25 @@
+"""Тесты для страницы AddCustomer"""
+
+import allure
+import pytest
+
 from pages.AddCustomerPage import AddCustomerPage
 
-import pytest
-import allure
 
 
-
-
-@allure.feature('Тесты страницы Add Customer (корректные)')
+@allure.feature("Тесты страницы Add Customer (корректные)")
 class TestAddCustomerPage_correct:
+    """Класс корректных тестов для страницы Add Customer"""
 
     @pytest.fixture(autouse=True)
     def setup(self, driver_setup):
+        """Инициализация драйвера из фикстуры"""
         self.driver = driver_setup
         self.add_customer_page = AddCustomerPage(self.driver)
 
-    @allure.story('Тестирование добавления нового клиента')
+    @allure.story("Тестирование добавления нового клиента")
     def test_add_customer(self):
+        """Тест на добавление одного корректного клиента"""
         with allure.step("Заполнение поля First Name"):
             self.add_customer_page.fill_fname_by_post_code()
 
@@ -30,23 +34,27 @@ class TestAddCustomerPage_correct:
 
         with allure.step("Проверка появления алерта"):
             assert self.add_customer_page.is_alert_appeared(2)
-        
-    @allure.story('Тестирование добавления 15 новых клиентов')
+
+    @allure.story("Тестирование добавления 15 новых клиентов")
     def test_add_many_customers(self):
-        for i in range(15):
+        """Тест на добавление множества корректных клиентов"""
+        for _ in range(15):
             self.test_add_customer()
 
 
-@allure.feature('Тесты страницы Add Customer (не корректные)')
+@allure.feature("Тесты страницы Add Customer (не корректные)")
 class TestAddCustomerPage_incorrect:
+    """Класс некорректных тестов для страницы Add Customer"""
 
     @pytest.fixture(autouse=True)
     def setup(self, driver_setup):
+        """Инициализация драйвера из фикстуры"""
         self.driver = driver_setup
         self.add_customer_page = AddCustomerPage(self.driver)
 
-    @allure.story('Тестирование добавления клиента с пустым first name')
+    @allure.story("Тестирование добавления клиента с пустым first name")
     def test_empty_fname(self):
+        """Тест на добавление клиента с пустым полем First Name"""
         with allure.step("Заполнение поля First Name"):
             self.add_customer_page.fill_fname_by_value("")
 
@@ -62,8 +70,9 @@ class TestAddCustomerPage_incorrect:
         with allure.step("Проверка появления алерта"):
             assert not self.add_customer_page.is_alert_appeared(2)
 
-    @allure.story('Тестирование добавления клиента с пустым last name')
+    @allure.story("Тестирование добавления клиента с пустым last name")
     def test_empty_lname(self):
+        """Тест на добавление клиента с пустым полем Last Name"""
         with allure.step("Заполнение поля First Name"):
             self.add_customer_page.fill_fname_by_value("Test")
 
@@ -79,8 +88,9 @@ class TestAddCustomerPage_incorrect:
         with allure.step("Проверка появления алерта"):
             assert not self.add_customer_page.is_alert_appeared(1)
 
-    @allure.story('Тестирование добавления клиента с пустым post code')
+    @allure.story("Тестирование добавления клиента с пустым post code")
     def test_empty_postcode(self):
+        """Тест на добавление клиента с пустым полем Post Code"""
         with allure.step("Заполнение поля First Name"):
             self.add_customer_page.fill_fname_by_value("Test")
 
@@ -96,8 +106,9 @@ class TestAddCustomerPage_incorrect:
         with allure.step("Проверка появления алерта"):
             assert not self.add_customer_page.is_alert_appeared(1)
 
-    @allure.story('Тестирование добавления клиента с некорректным first name')
+    @allure.story("Тестирование добавления клиента с некорректным first name")
     def test_incorrect_fname(self):
+        """Тест на добавление клиента с некорректным полем First Name"""
         with allure.step("Заполнение поля First Name"):
             self.add_customer_page.fill_fname_by_value("123")
 
@@ -113,8 +124,9 @@ class TestAddCustomerPage_incorrect:
         with allure.step("Проверка появления алерта"):
             assert not self.add_customer_page.is_alert_appeared(1)
 
-    @allure.story('Тестирование добавления клиента с некорректным last name')
+    @allure.story("Тестирование добавления клиента с некорректным last name")
     def test_incorrect_lname(self):
+        """Тест на добавление клиента с некорректным полем Last Name"""
         with allure.step("Заполнение поля First Name"):
             self.add_customer_page.fill_fname_by_value("Test")
 
@@ -130,8 +142,9 @@ class TestAddCustomerPage_incorrect:
         with allure.step("Проверка появления алерта"):
             assert not self.add_customer_page.is_alert_appeared(1)
 
-    @allure.story('Тестирование добавления клиента с некорректным last name')
+    @allure.story("Тестирование добавления клиента с некорректным post code")
     def test_incorrect_postcode(self):
+        """Тест на добавление клиента с некорректным полем Post Code"""
         with allure.step("Заполнение поля First Name"):
             self.add_customer_page.fill_fname_by_value("Test")
 
