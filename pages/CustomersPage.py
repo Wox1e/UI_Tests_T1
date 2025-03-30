@@ -58,9 +58,9 @@ class CustomersPage(BasePage):
 
         for row in rows:
             fname = row.text.split(" ")[0]
-            delete_btn = row.find_element(By.TAG_NAME, "button")
 
             if fname == first_name:
+                delete_btn = row.find_element(By.TAG_NAME, "button")
                 self.click_on_element(delete_btn)
                 return
 
