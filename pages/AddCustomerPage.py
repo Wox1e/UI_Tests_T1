@@ -8,15 +8,15 @@ from pages.BasePage import BasePage
 
 class AddCustomerPageLocators:
     """Локаторы для элементов на странице добавления клиента."""
-    BTN_AddCustomer_CSS = "button.btn:nth-child(4)"
-    INPUT_FirstName_CSS = "div.form-group:nth-child(1) > input:nth-child(2)"
-    INPUT_PostCode_CSS = "div.form-group:nth-child(3) > input:nth-child(2)"
-    INPUT_LastName_CSS = "div.form-group:nth-child(2) > input:nth-child(2)"
+    BTN_AddCustomer_CSS = (By.CSS_SELECTOR, "button.btn:nth-child(4)")
+    INPUT_FirstName_CSS = (By.CSS_SELECTOR, "div.form-group:nth-child(1) > input:nth-child(2)")
+    INPUT_PostCode_CSS = (By.CSS_SELECTOR, "div.form-group:nth-child(3) > input:nth-child(2)")
+    INPUT_LastName_CSS = (By.CSS_SELECTOR, "div.form-group:nth-child(2) > input:nth-child(2)")
 
-    BTN_AddCustomer_XPATH = "//button[contains(@class, 'btn') and position()=4]"
-    INPUT_FirstName_XPATH = "//div[@class='form-group'][1]//input"
-    INPUT_PostCode_XPATH = "//div[@class='form-group'][3]//input"
-    INPUT_LastName_XPATH = "//div[@class='form-group'][2]//input"
+    BTN_AddCustomer_XPATH = (By.XPATH, "//button[contains(@class, 'btn') and position()=4]")
+    INPUT_FirstName_XPATH = (By.XPATH, "//div[@class='form-group'][1]//input")
+    INPUT_PostCode_XPATH = (By.XPATH, "//div[@class='form-group'][3]//input")
+    INPUT_LastName_XPATH = (By.XPATH, "//div[@class='form-group'][2]//input")
 
 class AddCustomerPage(BasePage):
     """Класс для работы со страницей добавления клиента."""
@@ -49,19 +49,16 @@ class AddCustomerPage(BasePage):
 
     def _generate_last_name(self) -> str:
         """Генерирует LastName на основе PostCode."""
-
         return self._generate_first_name(self._generate_post_code())
 
     def click_add_customer_button(self) -> None:
         """Нажимает на кнопку добавления клиента."""
-        locator = (By.CSS_SELECTOR, AddCustomerPageLocators.BTN_AddCustomer_CSS)
-        element = self.find_element(locator)
+        element = self.find_element(AddCustomerPageLocators.BTN_AddCustomer_CSS)
         self.click_on_element(element)
 
     def fill_post_code(self) -> None:
         """Заполняет поле PostCode сгенерированными данными"""
-        locator = (By.XPATH, AddCustomerPageLocators.INPUT_PostCode_XPATH)
-        element = self.find_element(locator)
+        element = self.find_element(AddCustomerPageLocators.INPUT_PostCode_XPATH)
         self.fill_element(element, self.post_code)
 
     def fill_post_code_by_value(self, value:str) -> None:
@@ -71,26 +68,22 @@ class AddCustomerPage(BasePage):
 
     def fill_fname_by_post_code(self) -> None:
         """Заполняет поле FirstName сгенерированными данными"""
-        locator = (By.CSS_SELECTOR, AddCustomerPageLocators.INPUT_FirstName_CSS)
-        element = self.find_element(locator)
+        element = self.find_element(AddCustomerPageLocators.INPUT_FirstName_CSS)
         first_name = self._generate_first_name(self.post_code)
         self.fill_element(element, first_name)
 
     def fill_lname_by_post_code(self) -> None:
         """Заполняет поле LastName сгенерированными данными"""
         last_name = self._generate_last_name()
-        locator = (By.XPATH, AddCustomerPageLocators.INPUT_LastName_XPATH)
-        element = self.find_element(locator)
+        element = self.find_element(AddCustomerPageLocators.INPUT_LastName_XPATH)
         self.fill_element(element, last_name)
 
     def fill_lname_by_value(self, value:str) -> None:
         """Заполняет поле Last Name, строкой, переданной в функцию"""
-        locator = (By.XPATH, AddCustomerPageLocators.INPUT_LastName_XPATH)
-        element = self.find_element(locator)
+        element = self.find_element(AddCustomerPageLocators.INPUT_LastName_XPATH)
         self.fill_element(element, value)
 
     def fill_fname_by_value(self, value:str) -> None:
         """Заполняет поле First Name, строкой, переданной в функцию"""
-        locator = (By.CSS_SELECTOR, AddCustomerPageLocators.INPUT_FirstName_CSS)
-        element = self.find_element(locator)
+        element = self.find_element(AddCustomerPageLocators.INPUT_FirstName_CSS)
         self.fill_element(element, value)
