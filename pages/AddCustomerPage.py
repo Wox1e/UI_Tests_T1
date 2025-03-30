@@ -13,10 +13,10 @@ class AddCustomerPageLocators:
     INPUT_PostCode_CSS = "div.form-group:nth-child(3) > input:nth-child(2)"
     INPUT_LastName_CSS = "div.form-group:nth-child(2) > input:nth-child(2)"
 
-    BTN_AddCustomer_XPATH = "/html/body/div/div/div[2]/div/div[2]/div/div/form/button"
-    INPUT_FirstName_XPATH = "/html/body/div/div/div[2]/div/div[2]/div/div/form/div[1]/input"
-    INPUT_PostCode_XPATH = "/html/body/div/div/div[2]/div/div[2]/div/div/form/div[3]/input"
-    INPUT_LastName_XPATH = "/html/body/div/div/div[2]/div/div[2]/div/div/form/div[2]/input"
+    BTN_AddCustomer_XPATH = "//button[contains(@class, 'btn') and position()=4]"
+    INPUT_FirstName_XPATH = "//div[@class='form-group'][1]//input"
+    INPUT_PostCode_XPATH = "//div[@class='form-group'][3]//input"
+    INPUT_LastName_XPATH = "//div[@class='form-group'][2]//input"
 
 class AddCustomerPage(BasePage):
     """Класс для работы со страницей добавления клиента."""

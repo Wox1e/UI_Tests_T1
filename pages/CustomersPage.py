@@ -13,8 +13,8 @@ class CustomersPageLocators:
     BTN_FirstName_CSS = ".table > thead:nth-child(1) > tr:nth-child(1) > td:nth-child(1) > a:nth-child(1)"
     Customers_Table_CSS = ".table > tbody:nth-child(2)"
 
-    BTN_FirstName_XPATH = "/html/body/div/div/div[2]/div/div[2]/div/div/table/thead/tr/td[1]/a"
-    Customers_Table_XPATH = "/html/body/div/div/div[2]/div/div[2]/div/div/table/tbody"
+    BTN_FirstName_XPATH = "//table/thead/tr/td[1]/a"
+    Customers_Table_XPATH = "//table/tbody"
 
 
 class CustomersPage(BasePage):
