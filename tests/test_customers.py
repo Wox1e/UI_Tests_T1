@@ -7,7 +7,6 @@ from pages.CustomersPage import CustomersPage
 
 
 @allure.feature("Тестирование страницы Customers")
-@pytest.mark.usefixtures("customers_page")
 class TestCustomersPage:
     """Класс тестов страницы Customers"""
 
