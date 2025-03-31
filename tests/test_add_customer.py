@@ -6,7 +6,6 @@ import pytest
 from pages.AddCustomerPage import AddCustomerPage
 
 @allure.feature("Тесты страницы Add Customer (корректные)")
-@pytest.mark.usefixtures("add_customer_page")
 class TestAddCustomerPageCorrect:
     """Класс корректных тестов для страницы Add Customer"""
 
@@ -35,7 +34,6 @@ class TestAddCustomerPageCorrect:
             self.test_add_customer(add_customer_page)
 
 @allure.feature("Тесты страницы Add Customer (некорректные)")
-@pytest.mark.usefixtures("add_customer_page")
 class TestAddCustomerPage_incorrect():
     """Класс некорректных тестов для страницы Add Customer"""
 
